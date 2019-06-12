@@ -1,6 +1,18 @@
 # NodeJS Example InstaApp
 
-This is an example API built on NodeJS that handles posts in a social network. This is based on [Rocketset's](https://rocketseat.com.br/starter) free coursers.
+This is an example API built on NodeJS that handles posts in a social network. This is based on [Rocketset's](https://rocketseat.com.br/starter) free courses.
+
+Content:
+
+- NodeJS
+  - express (to handle requests)
+  - socket.io (oh, this is cool)
+  - mongoose (MongoDB connection - the creation of models is freaking simple!)
+  - multer (for multipart form requests - handles file upload)
+  - cors (for now just allowing everything from everywhere)
+  - sharp (to resize images uploaded)
+- devDependencies
+    - nodemon (use `yarn dev` to start developing and any change is automatically deployed)
 
 ## Endpoints
 
