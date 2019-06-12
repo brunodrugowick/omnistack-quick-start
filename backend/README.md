@@ -64,9 +64,10 @@ hashtags: a string with any number of hashtags separated by a single space (actu
 
 ## Running
 
-Clone this repository and start the application with 
+Clone this repository, install and start the application backend (this API) in dev mode with 
 ```
-yarn dev
+cd backend
+yarn && yarn dev
 ```
 This uses nodemon (a dev dependency) to monitor the app files and automatically restarts the app when you make modifications.
 
