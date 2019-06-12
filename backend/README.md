@@ -60,6 +60,8 @@ hashtags: a string with any number of hashtags separated by a single space (actu
 
 `POST` on `/posts/:id/like` where `:id` is a post id adds a like to that particular post. No request body is necessary.
 
+`GET` on `/files/:image` where `:image` is the name of the image (obtained from the `GET` on `posts`) returns the image file as a static.
+
 ## Running
 
 Clone this repository and start the application with 
