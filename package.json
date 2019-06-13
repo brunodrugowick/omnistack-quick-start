@@ -4,7 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "build": "yarn install"
+  },
+  "engines": {
+    "node": "10.15.2",
+    "yarn": "1.16.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
