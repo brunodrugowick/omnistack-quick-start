@@ -31,7 +31,7 @@ module.exports = {
         post.image = fileName,
         post.imageBinary = {
             data: fs.readFileSync(resizedImagePath),
-            contentType = 'image/jpeg'
+            contentType: 'image/jpeg',
         }
         await post.save();
 
