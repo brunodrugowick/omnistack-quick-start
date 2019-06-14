@@ -16,7 +16,6 @@ module.exports = {
         const [name, ext] = image.split('.');
         const fileName = `${name}.jpg`;
 
-        // Generate resized image
         await sharp(req.file.path)
         .resize(500)
         .jpeg({ quality: 70})
@@ -24,18 +23,16 @@ module.exports = {
             path.resolve(req.file.destination, 'resized', fileName)
         )
 
-        // Remove original image
         fs.unlinkSync(req.file.path);
-        
-        const post = await Post.create({	
-            author,	
-            place,	
-            description, 	
-            hashtags, 	
-            image: fileName,
+
+        const post = await Post.create({
+           author,
+           place,
+           description, 
+           hashtags, 
+           image: fileName
         });
 
-        // Emit new post to connected clients via WebSocket.
         req.io.emit('post', post);
 
         return res.json(post);
