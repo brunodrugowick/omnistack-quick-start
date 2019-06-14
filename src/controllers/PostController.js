@@ -23,29 +23,18 @@ module.exports = {
         .jpeg({ quality: 70})
         .toFile(resizedImagePath)
 
-        /**
-        const post = new Post;
-        post.author = author;
-        post.place = place;
-        post.description = description;
-        post.hashtags = hashtags;
-        post.image = fileName,
-        post.imageBinary.data = fs.readFileSync(resizedImagePath);
-        post.imageBinary.contentType = 'image/jpeg';
-        await post.save();
-        */
-
-       const post = await Post.create({	
-        author,	
-        place,	
-        description, 	
-        hashtags, 	
-        image: fileName,
+        
+        const post = await Post.create({	
+            author,	
+            place,	
+            description, 	
+            hashtags, 	
+            image: fileName,
         // imageBinary: {
         //     data: fs.readFileSync(resizedImagePath),
         //     contentType: 'image/jpeg'
         // }
-     });
+        });
         
         // Remove original image
         fs.unlinkSync(req.file.path);
