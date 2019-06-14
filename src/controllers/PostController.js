@@ -29,8 +29,10 @@ module.exports = {
         post.description = description;
         post.hashtags = hashtags;
         post.image = fileName,
-        post.imageBinary.data = fs.readFileSync(resizedImagePath);
-        post.imageBinary.contentType = 'image/jpeg';
+        post.imageBinary = {
+            data: fs.readFileSync(resizedImagePath),
+            contentType = 'image/jpeg'
+        }
         await post.save();
 
         // Remove original image
