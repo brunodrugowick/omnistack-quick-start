@@ -17,12 +17,12 @@ module.exports = {
         const fileName = `${name}.jpg`;
 
         // Generate resized image
-        const resizedImagePath = path.resolve(req.file.destination, 'resized', fileName);
         await sharp(req.file.path)
         .resize(500)
         .jpeg({ quality: 70})
-        .toFile(resizedImagePath)
-
+        .toFile(
+            path.resolve(req.file.destination, 'resized', fileName)
+        )
         
         const post = await Post.create({	
             author,	
