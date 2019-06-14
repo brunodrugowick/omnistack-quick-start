@@ -23,6 +23,9 @@ module.exports = {
         .toFile(
             path.resolve(req.file.destination, 'resized', fileName)
         )
+
+        // Remove original image
+        fs.unlinkSync(req.file.path);
         
         const post = await Post.create({	
             author,	
@@ -35,9 +38,6 @@ module.exports = {
         //     contentType: 'image/jpeg'
         // }
         });
-        
-        // Remove original image
-        fs.unlinkSync(req.file.path);
 
         // Emit new post to connected clients via WebSocket.
         req.io.emit('post', post);
