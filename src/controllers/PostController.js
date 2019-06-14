@@ -33,10 +33,6 @@ module.exports = {
             description, 	
             hashtags, 	
             image: fileName,
-        // imageBinary: {
-        //     data: fs.readFileSync(resizedImagePath),
-        //     contentType: 'image/jpeg'
-        // }
         });
 
         // Emit new post to connected clients via WebSocket.

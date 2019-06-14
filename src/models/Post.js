@@ -6,10 +6,6 @@ const PostSchema = new mongoose.Schema({
     description: String,
     hashtags: String,
     image: String,
-    // imageBinary: { 
-    //     data: Buffer, 
-    //     contentType: String
-    // },
     likes: {
         type: Number,
         default: 0
