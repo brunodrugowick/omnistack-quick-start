@@ -8,7 +8,9 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
-mongoose.connect('mongodb+srv://user:aiowas@omnistack-quick-start-deaet.mongodb.net/prod?retryWrites=true&w=majority', {
+console.log('MongoDB Connection String: %s', process.env.DB);
+
+mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
 });
 
