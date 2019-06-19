@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -7,8 +9,6 @@ const app = express();
 
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
-
-console.log('MongoDB Connection String: %s', process.env.DB);
 
 mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
