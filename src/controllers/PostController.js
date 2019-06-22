@@ -2,7 +2,6 @@ const Post = require('../models/Post');
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
-const uuid = require('uuid/v1');
 const aws = require('aws-sdk');
 
 aws.config.update({
@@ -18,6 +17,11 @@ module.exports = {
         const posts = await Post.find().sort('-createdAt');
 
         return res.json({numberOfPosts: posts.length, posts});
+    },
+    async getById(req, res) {
+        const post = await Post.find({ _id: req.params.id });
+
+        return res.json({numberOfPosts: post.length, post});
     },
     async store(req, res) {
         const { author, place, description, hashtags } = req.body;
