@@ -2,18 +2,6 @@
 
 This is an example API built on NodeJS that handles posts in a social network. This is based on [Rocketset's](https://rocketseat.com.br/starter) free courses.
 
-Content:
-
-- NodeJS
-  - express (to handle requests)
-  - socket.io (oh, this is cool)
-  - mongoose (MongoDB connection - the creation of models is freaking simple!)
-  - multer (for multipart form requests - handles file upload)
-  - cors (for now just allowing everything from everywhere)
-  - sharp (to resize images uploaded)
-- devDependencies
-    - nodemon (use `yarn dev` to start developing and any change is automatically deployed)
-
 ## Endpoints
 
 `GET` on `/posts` gets all the posts. Example response:
@@ -58,9 +46,56 @@ description: a description for the post.
 hashtags: a string with any number of hashtags separated by a single space (actually, just a string :).
 ```
 
+`GET` on `/posts/:id` where `:id` is a post id gets the post with the id.
+```
+{
+  "numberOfPosts": 1,
+  "post": [
+    {
+      "likes": 72,
+      "_id": "5d04493d51cc980017ede7a9",
+      "author": "Bruno Drugowick",
+      "place": "Campinas, SP",
+      "description": "This is an Instagram clone that runs a NodeJS backend using a MongoDB Atlas (cloud) instance and a React frontend. You can upload a new picture using the camera icon (top right corner) and see the feed (app logo on top left corner).",
+      "hashtags": "#demo #node #express #mongoDBAtlas #react #stringsEverywhere",
+      "s3Url": "https://omnistack-quick-start-bucket.s3.amazonaws.com/15.jpeg",
+      "createdAt": "3019-06-15T01:26:21.695Z",
+      "updatedAt": "2019-06-21T04:11:09.990Z",
+      "__v": 0
+    }
+  ]
+}
+```
+
 `POST` on `/posts/:id/like` where `:id` is a post id adds a like to that particular post. No request body is necessary.
 
-`GET` on `/files/:image` where `:image` is the name of the image (obtained from the `GET` on `posts`) returns the image file as a static.
+`GET` on `/posts/:id/comments` where `id` is a post id gets its comments.
+```
+{
+  "numberOfComments": 1,
+  "comments": [
+    {
+      "_id": "5d0d78e6fa06b600175f0948",
+      "author": "Bruno Drugowick",
+      "comment": "You can also comment!",
+      "post": "5d04493d51cc980017ede7a9",
+      "createdAt": "2019-06-22T00:40:06.856Z",
+      "updatedAt": "2019-06-22T00:40:06.856Z",
+      "__v": 0
+    }
+  ]
+}
+```
+
+`POST` on `/posts/:id/comment` where `id` is a post id posts a comment to the post with the id. Request should be url-encoded with the parameters:
+
+- author (string)
+- comment (string)
+- post (the id of the post - string)
+
+## Images
+
+Images are saved on a Amazon S3 instance.
 
 ## Running
 
@@ -75,4 +110,6 @@ The application uses a MongoDB instance at [https://cloud.mongodb.com](https://c
 
 ## Production
 
-I don't know that yet.
+This application runs at [https://omnistack-quick-start-backend.herokuapp.com/](https://omnistack-quick-start-backend.herokuapp.com/).
+
+The *frontend* this application supports runs at [https://omnistack-quick-start-frontend.herokuapp.com/](https://omnistack-quick-start-frontend.herokuapp.com/).
