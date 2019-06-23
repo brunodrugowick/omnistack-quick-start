@@ -8,6 +8,9 @@ aws.config.update({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     region: process.env.AWS_DEFAULT_REGION,
+    httpOptions: {
+        xhrAsync: false,
+    }
 });
 
 const s3 = new aws.S3();
@@ -47,7 +50,7 @@ module.exports = {
         }
 
         // Save to Amazon S3
-        s3.putObject(s3Params, (error, data) => {
+        await s3.putObject(s3Params, (error, data) => {
             if (error) {
                 console.error(error);
                 console.error("Error uploading to S3.")
@@ -57,7 +60,7 @@ module.exports = {
                 console.log(data);
             }
         });
-        
+       
         const post = new Post;
         post.author = author;
         post.place = place;
